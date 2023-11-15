@@ -1,12 +1,17 @@
 package christmas.Controller;
 
+import christmas.Dto.ExpectedVisitDateDto;
+import christmas.Dto.FoodChoiceDto;
 import christmas.View.InputView.InputView;
 
 public class Controller {
     InputView inputView = new InputView();
+    ExpectedVisitDateDto expectedVisitDateDto = new ExpectedVisitDateDto();
+    FoodChoiceDto foodChoiceDto = new FoodChoiceDto();
 
     public void InputDate () {
-        inputView.InputExpectedVisitDate();
+        System.out.println(expectedVisitDateDto.ExpectedVisitDate(inputView.InputExpectedVisitDate()).getVisitDate());
+
     }
 
 
