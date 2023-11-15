@@ -2,6 +2,8 @@ package christmas.ValueObject.FoodChoice;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.stream.Collectors;
 
 public class FoodChoice {
 
@@ -20,6 +22,16 @@ public class FoodChoice {
                 .orElse(null);
     }
 
+    public List<Map<String, Integer>> getAllFoodNamesWithQuantity() {
+        return FoodList.stream()
+                .flatMap(categoryMap -> categoryMap.values().stream())
+                .flatMap(foodMaps -> foodMaps.stream()
+                        .flatMap(foodMap -> foodMap.entrySet().stream()))
+                .collect(Collectors.groupingBy(Map.Entry::getKey, Collectors.summingInt(Map.Entry::getValue)))
+                .entrySet().stream()
+                .map(entry -> Map.of(entry.getKey(), entry.getValue()))
+                .collect(Collectors.toList());
+    }
 
 
     public List<Map<String, List<Map<String, Integer>>>> print () {

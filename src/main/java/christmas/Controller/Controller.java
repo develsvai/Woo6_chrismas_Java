@@ -3,14 +3,17 @@ package christmas.Controller;
 import christmas.Dto.ExpectedVisitDateDto;
 import christmas.Dto.FoodChoiceDto;
 import christmas.ValueObject.FoodChoice.FoodChoice;
+import christmas.Service.TotalPriceService.TotalPrice;
 import christmas.View.InputView.InputView;
-import java.util.List;
-import java.util.Map;
+
 
 public class Controller {
     InputView inputView = new InputView();
     ExpectedVisitDateDto expectedVisitDateDto = new ExpectedVisitDateDto();
     FoodChoiceDto foodChoiceDto = new FoodChoiceDto();
+
+
+
 
     public void InputDate () {
         System.out.println(expectedVisitDateDto.ExpectedVisitDate(inputView.InputExpectedVisitDate()).getVisitDate());
@@ -29,5 +32,13 @@ public class Controller {
                                 System.out.println("  " + menu + " - " + quantity + "개")));
             });
         });
+
+        TotalPrice totalPrice = new TotalPrice(processedOrder);
+
+        System.out.println( "할인전 총 가격 " + totalPrice.calculateTotalPrice());
     }
+
+
+
+
 }
