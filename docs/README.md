@@ -14,22 +14,34 @@
 ## Value Object 
 ### DdayDiscountService
 입력 받는 날짜 를 받아 디데이 할인 금액을 계산하여 반환
+
 ### WeekdayDiscountService
 메뉴를 받아 디저트 일 경우 그 개수를 계산 하여 1개당 2023 원 씩 계산하여 반환 
+
 ### WeekendDiscountService
 방문 날짜가 주말일 경우 메인 메뉴를 1개당 2023 원씩 계산하여 반환
+
 ### SpecialDiscountService
 방문 날짜가 일요일 이거나 25일 이면 1000원 할인
+
 ### BonusEventService
 할인전 총 주문액이 12만 이상이면, 삼폐인 1개 증정 
+
 ### IntegratedEventService
+해당 기간이 아닐경우 0을 리턴 할거라 사용 x
 
 ### FoodChoice
+입력받은 메뉴를 dto가 형식을 변환하여 저장하는 객체
 
+### ExpectedVisitDate 
+예정 방문일자 를 저장하는 객체
 
 #### Model 에서 검증
 
 
+## Util 
+입력 받는 값의 타입 변환 
+입력 받는 날짜 를 요일로 변환
 
 
 ## 뷰 
