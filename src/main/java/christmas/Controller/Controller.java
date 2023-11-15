@@ -2,7 +2,10 @@ package christmas.Controller;
 
 import christmas.Dto.ExpectedVisitDateDto;
 import christmas.Dto.FoodChoiceDto;
+import christmas.ValueObject.FoodChoice.FoodChoice;
 import christmas.View.InputView.InputView;
+import java.util.List;
+import java.util.Map;
 
 public class Controller {
     InputView inputView = new InputView();
@@ -16,7 +19,15 @@ public class Controller {
 
 
     public void InputMenu () {
-        inputView.InputMenu();
+        FoodChoice processedOrder = foodChoiceDto.foodListMap(inputView.InputMenu());
 
+        processedOrder.print().forEach(categoryMap -> {
+            categoryMap.forEach((category, menuList) -> {
+                System.out.println(category + ":");
+                menuList.forEach(menuMap ->
+                        menuMap.forEach((menu, quantity) ->
+                                System.out.println("  " + menu + " - " + quantity + "개")));
+            });
+        });
     }
 }

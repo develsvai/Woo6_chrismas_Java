@@ -1,56 +1,55 @@
 package christmas.Dto;
 
 import christmas.MenuValue.Menuvalue;
-import christmas.Util.TypeConverter;
 import christmas.ValueObject.FoodChoice.FoodChoice;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class FoodChoiceDto {
 
-    public FoodChoice foodListMap (String foodList){
-        List<Map<String, Integer>> StringToMap =  convertStringToList(foodList);
-        return new FoodChoice(processOrders(StringToMap));
+    public FoodChoice foodListMap(String orderList) {
+        Map<String, Integer> stringToMap = convertStringToList(orderList);
+        List<Map<String, List<Map<String, Integer>>>> processedOrder = processOrder(stringToMap);
+        return new FoodChoice(processedOrder);
     }
 
-    private  Map<String, Integer> convertOrderStringToMap(String orderString) {
-        return Arrays.stream(orderString.split(","))
-                .map(item -> item.split("-"))
-                .filter(parts -> parts.length == 2)
-                .collect(Collectors.toMap(
-                        parts -> parts[0].trim(),
-                        parts -> Integer.parseInt(parts[1].trim())
-                ));
-    }
+    private static List<Map<String, List<Map<String, Integer>>>> processOrder(Map<String, Integer> order) {
+        return order.entrySet().stream()
+                .map(orderEntry -> {
+                    String menuName = orderEntry.getKey();
+                    int quantity = orderEntry.getValue();
 
-    // 문자열을 List<Map<음식 이름, 개수>>로 변환하는 메서드
-    private  List<Map<String, Integer>> convertStringToList(String orderString) {
-        return List.of(convertOrderStringToMap(orderString));
-    }
+                    return Arrays.stream(Menuvalue.values())
+                            .filter(menu -> menu.name().equals(menuName))
+                            .findFirst()
+                            .map(menu -> {
+                                String category = menu.getCategory();
 
-    private  String getMenuCategory(Map<String, Integer> orderItem) {
-        String foodName = orderItem.keySet().iterator().next();
-        try {
-            Menuvalue menuValue = Menuvalue.valueOf(foodName);
-            return menuValue.getCategory();
-        } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException("");
-        }
-    }
-
-
-    private  List<Map<String, List<Map<String, Integer>>>> processOrders(List<Map<String, Integer>> orderList) {
-        return orderList.stream()
+                                return Map.of(category, List.of(Map.of(menuName, quantity)));
+                            })
+                            .orElse(null);
+                })
+                .filter(Objects::nonNull)
                 .collect(Collectors.groupingBy(
-                        item -> getMenuCategory(item),
-                        Collectors.toList() // 그룹화된 항목을 리스트로 저장
+                        categoryMap -> categoryMap.keySet().iterator().next(),
+                        Collectors.mapping(categoryMap -> categoryMap.values().iterator().next().get(0), Collectors.toList())
                 ))
                 .entrySet().stream()
                 .map(entry -> Map.of(entry.getKey(), entry.getValue()))
                 .collect(Collectors.toList());
     }
 
+    private static Map<String, Integer> convertStringToList(String orderString) {
+        return Arrays.stream(orderString.split(","))
+                .map(item -> item.split("-"))
+                .filter(parts -> parts.length == 2)
+                .collect(Collectors.toMap(
+                        parts -> parts[0],
+                        parts -> Integer.parseInt(parts[1])
+                ));
+    }
 
 }

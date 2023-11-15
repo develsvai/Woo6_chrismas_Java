@@ -22,20 +22,24 @@ public class FoodChoice {
 
 
 
+    public List<Map<String, List<Map<String, Integer>>>> print () {
+        return FoodList;
+    }
+
     public List<Map<String, Integer>> getAppetizer () {
-        return getCategory("Appetizer");
+        return getCategory("에피타이저");
     }
 
     public List<Map<String, Integer>> getMain () {
-        return getCategory("Main");
+        return getCategory("메인");
     }
 
     public List<Map<String, Integer>> getDessert () {
-        return getCategory("Dessert");
+        return getCategory("디저트");
     }
 
     public List<Map<String, Integer>> getJuice () {
-        return getCategory("Juice");
+        return getCategory("음료");
     }
 
 
