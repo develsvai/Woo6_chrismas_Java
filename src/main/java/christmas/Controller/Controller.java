@@ -10,10 +10,12 @@ import christmas.ValueObject.FoodChoice.FoodChoice;
 import christmas.Service.TotalPriceService.TotalPrice;
 import christmas.ValueObject.TotalDiscount.TotalDiscount;
 import christmas.View.InputView.InputView;
+import christmas.View.OutputView.OutputView;
 
 
 public class Controller {
     InputView inputView = new InputView();
+    OutputView outputView = new OutputView();
     ExpectedVisitDateDto expectedVisitDateDto = new ExpectedVisitDateDto();
     FoodChoiceDto foodChoiceDto = new FoodChoiceDto();
     TotalDiscount totalDiscount = new TotalDiscount();
@@ -30,6 +32,12 @@ public class Controller {
     public void EventPlannerStart() {
         InputDate();
         InputMenu();
+        eventDiscount(foodChoice,visitDate);
+        outputView.orderMenu(foodChoice.getAllFoodNamesWithQuantity());
+        TotalPrice totalPrice = new TotalPrice(foodChoice);
+        outputView.beforeDiscountTotalPrice(totalPrice.calculateTotalPrice());
+        outputView.BonusEvent();
+        outputView.profitList(totalDiscount);
 
     }
 
@@ -51,18 +59,14 @@ public class Controller {
     public void InputMenu () {
         this.foodChoice = foodChoiceDto.foodListMap(inputView.InputMenu());
 
-        foodChoice.print().forEach(categoryMap -> {
-            categoryMap.forEach((category, menuList) -> {
-                System.out.println(category + ":");
-                menuList.forEach(menuMap ->
-                        menuMap.forEach((menu, quantity) ->
-                                System.out.println("  " + menu + " - " + quantity + "개")));
-            });
-        });
-
-        TotalPrice totalPrice = new TotalPrice(foodChoice);
-
-        System.out.println( "할인전 총 가격 " + totalPrice.calculateTotalPrice());
+//        foodChoice.print().forEach(categoryMap -> {
+//            categoryMap.forEach((category, menuList) -> {
+//                System.out.println(category + ":");
+//                menuList.forEach(menuMap ->
+//                        menuMap.forEach((menu, quantity) ->
+//                                System.out.println("  " + menu + " - " + quantity + "개")));
+//            });
+//        });
 
     }
 

@@ -2,8 +2,6 @@ package christmas.Service.SpecialDiscountService;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
-import java.util.List;
-import java.util.Map;
 
 public class SpecialDiscountService {
 
