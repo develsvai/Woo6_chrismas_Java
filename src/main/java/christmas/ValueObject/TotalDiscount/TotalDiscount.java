@@ -3,6 +3,7 @@ package christmas.ValueObject.TotalDiscount;
 public class TotalDiscount {
     private int DdayDiscount;
     private int WeekdayDiscount;
+    private int WeekendDiscount;
     private int specialDiscount;
     private int BonusEvent;
 
@@ -12,6 +13,9 @@ public class TotalDiscount {
     }
 
     public void setWeekdayDiscount(int weekdayDiscount) {
+        WeekdayDiscount = weekdayDiscount;
+    }
+    public void setWeekendDiscount(int weekdayDiscount) {
         WeekdayDiscount = weekdayDiscount;
     }
 
