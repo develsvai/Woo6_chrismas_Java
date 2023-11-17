@@ -35,7 +35,8 @@ public class FoodChoiceDto {
                 .filter(Objects::nonNull)
                 .collect(Collectors.groupingBy(
                         categoryMap -> categoryMap.keySet().iterator().next(),
-                        Collectors.mapping(categoryMap -> categoryMap.values().iterator().next().get(0), Collectors.toList())
+                        Collectors.mapping(categoryMap -> categoryMap.values().iterator().next().get(0),
+                                Collectors.toList())
                 ))
                 .entrySet().stream()
                 .map(entry -> Map.of(entry.getKey(), entry.getValue()))

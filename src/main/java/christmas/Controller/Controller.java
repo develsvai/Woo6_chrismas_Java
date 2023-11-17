@@ -59,14 +59,6 @@ public class Controller {
     public void InputMenu () {
         this.foodChoice = foodChoiceDto.foodListMap(inputView.InputMenu());
 
-//        foodChoice.print().forEach(categoryMap -> {
-//            categoryMap.forEach((category, menuList) -> {
-//                System.out.println(category + ":");
-//                menuList.forEach(menuMap ->
-//                        menuMap.forEach((menu, quantity) ->
-//                                System.out.println("  " + menu + " - " + quantity + "개")));
-//            });
-//        });
 
     }
 
