@@ -1,39 +1,27 @@
-package christmas.View.OutputView;
+package christmas.View.outputView;
 
-import christmas.ValueObject.TotalDiscount.TotalDiscount;
+import christmas.vo.TotalDiscount.TotalDiscount;
 import java.util.List;
 import java.util.Map;
 
-public class OutputView {
+public class ConsoleOutputView implements OutputView{
 
-    public void orderMenu(List<Map<String, Integer>> foodList) {
-        System.out.println("<주문 메뉴>");
+    public void print_order_Menu(List<Map<String, Integer>> foodList) {
+        System.out.println(ViewMessage.ORDER_MENU_MESSAGE.getMessage());
 
-        for (Map<String, Integer> itemMap : foodList) {
-            String itemName = itemMap.keySet().iterator().next();
-            int quantity = itemMap.values().iterator().next();
-
-            System.out.println(itemName + " " + quantity + "개");
-        }
-        System.out.println();
     }
 
-    public void beforeDiscountTotalPrice(int totalPrice) {
-        System.out.println("<할인 전 총주문 금액>");
-        System.out.printf("%,d원\n", totalPrice);
-        System.out.println();
+    public void print_before_Discount_Total_Price(int totalPrice) {
+        System.out.println(ViewMessage.BEFORE_DISCOUNT_TOTAL_PRICE_MESSAGE.getMessage());
+
     }
 
-
-    public void BonusEvent(){
-        System.out.println("<증정메뉴>");
-        System.out.println("샴페인 1개");
-        System.out.println();
+    public void print_giveAway_Menu(){
+        System.out.println(ViewMessage.GIVEAWAY_MENU_MESSAGE.getMessage());
     }
 
-
-    public void profitList(TotalDiscount totalDiscount){
-        System.out.println("<혜택 내역>");
+    public void benefits_history(TotalDiscount totalDiscount){
+        System.out.println(ViewMessage.BENEFITS_MESSAGE.getMessage());
         if(totalDiscount.getDdayDiscount() != 0) {
             System.out.println("크리스마스 디데이 할인 : -" + totalDiscount.getDdayDiscount() + "원");
         }
@@ -59,7 +47,16 @@ public class OutputView {
 
     }
 
+    public void print_Total_Benefit_Price(){
+
+    }
+
+    public void print_After_Discount_Payment_Amount(){
+
+    }
 
 
+    public void print_December_Event_Badge() {
 
+    }
 }
