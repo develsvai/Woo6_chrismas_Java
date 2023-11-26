@@ -48,15 +48,18 @@ public class ConsoleOutputView implements OutputView{
     }
 
     public void print_Total_Benefit_Price(){
+        System.out.println(ViewMessage.TOTAL_BENEFIT_PRICE_MESSAGE.getMessage());
 
     }
 
     public void print_After_Discount_Payment_Amount(){
+        System.out.println(ViewMessage.AFTER_DISCOUNT_PAYMENT_AMOUNT_MESSAGE.getMessage());
 
     }
 
 
     public void print_December_Event_Badge() {
+        System.out.println(ViewMessage.DECEMBER_EVENT_BADGE_MESSAGE.getMessage());
 
     }
 }
