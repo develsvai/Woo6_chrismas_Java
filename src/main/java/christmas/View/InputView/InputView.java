@@ -13,8 +13,8 @@ public class InputView {
 
     public String InputMenu() {
         System.out.println(InputMenuAndCount);
-        System.out.println(PreviewProfit);
         String menu = Console.readLine();
+        System.out.println(PreviewProfit);
         isInputMenuNull(menu);
         return  menu;
     }

@@ -19,14 +19,11 @@ public class TotalPrice {
                     int quantity = orderEntry.get(foodName);
 
                     Menuvalue menuvalue = Menuvalue.valueOf(foodName);
-                    String category = menuvalue.getCategory();
                     int price = menuvalue.getPrice();
 
                     return quantity * price;
                 })
                 .sum();
     }
-
-
 
 }

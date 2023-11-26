@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+
 public class FoodChoiceDto {
 
     public FoodChoice foodListMap(String orderList) {
@@ -16,22 +17,25 @@ public class FoodChoiceDto {
         return new FoodChoice(processedOrder);
     }
 
+    private static Map<String, List<Map<String, Integer>>> createOrderEntry(String menuName, int quantity) {
+        Menuvalue menu = findMenuByName(menuName);
+        if (menu != null) {
+            String category = menu.getCategory();
+            return Map.of(category, List.of(Map.of(menuName, quantity)));
+        }
+        return null;
+    }
+
+    private static Menuvalue findMenuByName(String menuName) {
+        return Arrays.stream(Menuvalue.values())
+                .filter(menu -> menu.name().equals(menuName))
+                .findFirst()
+                .orElse(null);
+    }
+
     private static List<Map<String, List<Map<String, Integer>>>> processOrder(Map<String, Integer> order) {
         return order.entrySet().stream()
-                .map(orderEntry -> {
-                    String menuName = orderEntry.getKey();
-                    int quantity = orderEntry.getValue();
-
-                    return Arrays.stream(Menuvalue.values())
-                            .filter(menu -> menu.name().equals(menuName))
-                            .findFirst()
-                            .map(menu -> {
-                                String category = menu.getCategory();
-
-                                return Map.of(category, List.of(Map.of(menuName, quantity)));
-                            })
-                            .orElse(null);
-                })
+                .map(orderEntry -> createOrderEntry(orderEntry.getKey(), orderEntry.getValue()))
                 .filter(Objects::nonNull)
                 .collect(Collectors.groupingBy(
                         categoryMap -> categoryMap.keySet().iterator().next(),
@@ -51,5 +55,6 @@ public class FoodChoiceDto {
                         parts -> Integer.parseInt(parts[1])
                 ));
     }
+
 
 }

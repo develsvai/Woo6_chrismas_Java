@@ -34,10 +34,23 @@ public class OutputView {
 
     public void profitList(TotalDiscount totalDiscount){
         System.out.println("<혜택 내역>");
-        System.out.println("크리스마스 디데이 할인 : -" + totalDiscount.getDdayDiscount() + "원");
-        System.out.println("평일 할인 : -" + totalDiscount.getWeekdayDiscount() + "원");
-        System.out.println("주말 할인 : -" + totalDiscount.getWeekendDiscount() + "원");
-        System.out.println("특별 할인 : -" + totalDiscount.getSpecialDiscount() + "원");
+        if(totalDiscount.getDdayDiscount() != 0) {
+            System.out.println("크리스마스 디데이 할인 : -" + totalDiscount.getDdayDiscount() + "원");
+        }
+
+        if( totalDiscount.getWeekdayDiscount() != 0) {
+            System.out.println("평일 할인 : -" + totalDiscount.getWeekdayDiscount() + "원");
+        }
+
+        if( totalDiscount.getWeekendDiscount() != 0) {
+            System.out.println("주말 할인 : -" + totalDiscount.getWeekendDiscount() + "원");
+        }
+
+        if( totalDiscount.getSpecialDiscount() !=0 ) {
+            System.out.println("특별 할인 : -" + totalDiscount.getSpecialDiscount() + "원");
+        }
+
+
         System.out.println("증정 이벤트 : -" + totalDiscount.getBonusEvent() + "원");
         System.out.println();
 
@@ -45,6 +58,7 @@ public class OutputView {
         System.out.println("-" + totalDiscount.TotalDiscountPrice() + "원" + "\n");
 
     }
+
 
 
 

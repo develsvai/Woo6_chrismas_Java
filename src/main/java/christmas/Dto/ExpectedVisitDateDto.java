@@ -7,15 +7,13 @@ public class ExpectedVisitDateDto {
 
     TypeConverter typeConverter = new TypeConverter();
 
-
-
     public ExpectedVisitDate ExpectedVisitDate(String Date) {
         Integer ExpectedDate = typeConverter.ConvertStringToInteger(Date);
         isValidVisitDateNull(ExpectedDate);
         return new ExpectedVisitDate(ExpectedDate);
     }
 
-    public void isValidVisitDateNull(Integer date) {
+    private static void isValidVisitDateNull(Integer date) {
         if (date == null) {
             throw new IllegalArgumentException("");
         }

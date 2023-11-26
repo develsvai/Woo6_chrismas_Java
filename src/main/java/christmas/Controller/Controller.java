@@ -26,13 +26,15 @@ public class Controller {
 
     SpecialDiscountService specialDiscountService = new SpecialDiscountService();
 
+
     private int visitDate ;
     private FoodChoice foodChoice;
 
     public void EventPlannerStart() {
+
         InputDate();
         InputMenu();
-        eventDiscount(foodChoice,visitDate);
+        ptoMotion(foodChoice,visitDate);
         outputView.orderMenu(foodChoice.getAllFoodNamesWithQuantity());
         TotalPrice totalPrice = new TotalPrice(foodChoice);
         outputView.beforeDiscountTotalPrice(totalPrice.calculateTotalPrice());
@@ -41,36 +43,28 @@ public class Controller {
 
     }
 
-    private void eventDiscount( FoodChoice foodChoice, int visitDate){
+    private void ptoMotion( FoodChoice foodChoice, int visitDate){
+
         totalDiscount.setDdayDiscount(ddayDiscountService.calculateDiscount(visitDate));
         totalDiscount.setWeekdayDiscount(weekdayDiscountService.calculateTotalDiscount(foodChoice.getDessert(), visitDate));
         totalDiscount.setWeekendDiscount(weekendDiscountService.calculateTotalDiscount(foodChoice.getMain(),visitDate));
         totalDiscount.setSpecialDiscount(specialDiscountService.calculateTotalDiscount(visitDate));
+
     }
 
 
     public void InputDate () {
-        Integer VisitDate = expectedVisitDateDto.ExpectedVisitDate(inputView.InputExpectedVisitDate()).getVisitDate();
-        this.visitDate = VisitDate;
+
+        this.visitDate = expectedVisitDateDto.ExpectedVisitDate(inputView.InputExpectedVisitDate()).getVisitDate();
 
     }
 
 
     public void InputMenu () {
+
         this.foodChoice = foodChoiceDto.foodListMap(inputView.InputMenu());
 
-//        foodChoice.print().forEach(categoryMap -> {
-//            categoryMap.forEach((category, menuList) -> {
-//                System.out.println(category + ":");
-//                menuList.forEach(menuMap ->
-//                        menuMap.forEach((menu, quantity) ->
-//                                System.out.println("  " + menu + " - " + quantity + "개")));
-//            });
-//        });
-
     }
-
-
 
 
 }
