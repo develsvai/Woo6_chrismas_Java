@@ -1,4 +1,4 @@
-package christmas.menu;
+package christmas.PromotionEnum;
 
 import java.util.Arrays;
 
