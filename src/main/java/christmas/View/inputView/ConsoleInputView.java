@@ -2,6 +2,10 @@ package christmas.View.inputView;
 
 
 import camp.nextstep.edu.missionutils.Console;
+import christmas.View.inputView.Parser.OrderParser;
+import christmas.View.inputView.Parser.VisitDateParser;
+import java.util.AbstractMap.SimpleEntry;
+import java.util.List;
 
 public class ConsoleInputView implements InputView{
 
@@ -9,16 +13,16 @@ public class ConsoleInputView implements InputView{
     private static final String InputMenuAndCount = "주문하실 메뉴를 메뉴와 개수를 알려 주세요. (e.g. 해산물파스타-2,레드와인-1,초코케이크-1)";
 
     @Override
-    public String input_Order_Menu() {
-        return Console.readLine();
+    public List<SimpleEntry<String, Integer>> input_Order_Menu() {
+        System.out.println(InputMenuAndCount);
+        return OrderParser.parseMenus(Console.readLine());
     }
 
     @Override
-    public String input_Expected_Visit_Date(){
+    public Integer input_Expected_Visit_Date(){
         System.out.println(ExpectedDate);
-        String Data = Console.readLine();
-        isInputExpectedVisitDateNull(Data);
-        return  Data;
+        return VisitDateParser.ParseVisitDate(Console.readLine());
+
     }
 
     private void isInputExpectedVisitDateNull(String Date){

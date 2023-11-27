@@ -1,8 +1,11 @@
 package christmas.View.inputView;
 
-public interface InputView {
-    public String  input_Order_Menu();
+import java.util.AbstractMap.SimpleEntry;
+import java.util.List;
 
-    public String input_Expected_Visit_Date();
+public interface InputView {
+    public List<SimpleEntry<String, Integer>> input_Order_Menu();
+
+    public Integer input_Expected_Visit_Date();
 
 }

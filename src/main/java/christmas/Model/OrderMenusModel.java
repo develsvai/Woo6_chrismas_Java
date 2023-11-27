@@ -1,6 +1,6 @@
 package christmas.Model;
 
-import christmas.menu.Menu;
+import christmas.PromotionEnum.Menu;
 import java.util.AbstractMap.SimpleEntry;
 import java.util.EnumMap;
 import java.util.List;

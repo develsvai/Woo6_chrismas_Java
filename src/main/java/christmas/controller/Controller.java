@@ -5,6 +5,8 @@ import christmas.View.inputView.InputView;
 import christmas.View.outputView.OutputView;
 import christmas.dto.InputOrderMenusDto;
 import christmas.dto.InputVisitDateDto;
+import christmas.dto.ModelToViewDto;
+import javax.swing.text.View;
 
 
 public class Controller {
@@ -22,9 +24,8 @@ public class Controller {
        outputView.print_Welcome_Message();
        Input_Expected_Visit_Date();
        Input_Order_Menu();
-
-       promotionService.printMenu();
-
+       ModelToViewDto modelToViewDto= new ModelToViewDto(promotionService.getOrderMenus());
+       outputView.print_order_Menu(modelToViewDto.transferModelToView());
     }
 
 
