@@ -1,7 +1,7 @@
 package christmas.dto;
 
 import christmas.Model.OrderMenusModel;
-import christmas.PromotionEnum.Menu;
+import christmas.promotionEnum.Menu;
 import java.util.EnumMap;
 
 public class ModelToViewDto {

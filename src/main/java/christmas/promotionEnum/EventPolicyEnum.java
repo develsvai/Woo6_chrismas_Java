@@ -1,8 +1,8 @@
-package christmas.PromotionEnum;
+package christmas.promotionEnum;
 
 public enum EventPolicyEnum {
 
-    DDAY_DISCOUNT("크리스마스 디데이 할인",1000),
+    D_DAY_DISCOUNT("크리스마스 디데이 할인",1000),
 
     WEEKDAY_DISCOUNT("평일 할인",2023),
 

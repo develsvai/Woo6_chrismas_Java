@@ -36,10 +36,8 @@ public class Controller {
 
 
     public void Input_Order_Menu () {
-
         InputOrderMenusDto inputOrderMenusDto =  new InputOrderMenusDto(inputView.input_Order_Menu());
         promotionService.createOrderMenusModel(inputOrderMenusDto.takeInputOrderMenus());
-
     }
 
 

@@ -2,13 +2,20 @@ package christmas.Service.promotionService;
 
 import christmas.Model.OrderMenusModel;
 import christmas.Model.VisitDateModel;
-import christmas.vo.DiscountAmount;
+import christmas.Service.discountService.DiscountService;
+import christmas.vo.Benefits;
 import java.util.AbstractMap.SimpleEntry;
 import java.util.List;
 
 public class PromotionService {
     private OrderMenusModel orderMenus;
     private VisitDateModel visitDate;
+
+    private DiscountService discountService ;
+
+    public PromotionService(){
+        this.discountService = new DiscountService(orderMenus,visitDate);
+    }
 
     public void createOrderMenusModel(List<SimpleEntry<String, Integer>> order) {
         this.orderMenus = new OrderMenusModel(order);
@@ -22,24 +29,25 @@ public class PromotionService {
         return orderMenus;
     }
 
-    public DiscountAmount get_chrisMas_D_Day_Discount_Amount() {
+    public void promotion() {
+        discountService.cal_christmas_D_Day_Discount_Amount();
+        discountService.cal_Weekend_Discount_Amount();
+        discountService.cal_Weekend_Discount_Amount();
+        discountService.cal_special_Discount_Amount();
+        discountService.cal_GiveAwayEvent_Amount();
 
     }
 
-    public DiscountAmount get_WeekDay_Discount_Amount(){
-
+    public Integer get_Before_Discount_Total_price(){
+        return discountService.get_Before_Discount_Total_price();
+    }
+    public Benefits getBenefits() {
+        return discountService.getBenefits();
     }
 
-    public DiscountAmount get_Weekend_Discount_Amount(){
-
+    public Integer getTotalBenefitPrice() {
+        return discountService.getTotalBenefitPrice();
     }
 
-    public DiscountAmount get_special_Discount_Amount(){
-
-    }
-
-    public DiscountAmount get_GiveAwayEvent_Amount(){
-
-    }
 
 }

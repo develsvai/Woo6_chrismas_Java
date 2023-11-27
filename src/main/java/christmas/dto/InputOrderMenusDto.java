@@ -7,6 +7,7 @@ public class InputOrderMenusDto {
     private List<SimpleEntry< String, Integer>> OrderMenu;
 
     public InputOrderMenusDto(List<SimpleEntry< String, Integer>> order){
+
         this.OrderMenu = order;
     }
 

@@ -1,7 +1,6 @@
 package christmas.View.outputView;
 
-import christmas.PromotionEnum.Menu;
-import christmas.vo.TotalDiscount.TotalDiscount;
+import christmas.promotionEnum.Menu;
 import java.util.EnumMap;
 
 public interface OutputView {
@@ -15,7 +14,7 @@ public interface OutputView {
 
     void print_giveAway_Menu();
 
-    void benefits_history(TotalDiscount totalDiscount);
+    void benefits_history();
 
     void print_Total_Benefit_Price();
 
