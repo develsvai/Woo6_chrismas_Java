@@ -22,7 +22,6 @@ public class ConsoleInputView implements InputView{
     public Integer input_Expected_Visit_Date(){
         System.out.println(ExpectedDate);
         return VisitDateParser.ParseVisitDate(Console.readLine());
-
     }
 
     private void isInputExpectedVisitDateNull(String Date){
