@@ -18,7 +18,7 @@ public interface OutputView {
 
     void benefits_history(EnumMap<EventPolicyEnum, Integer> benefits);
 
-    void print_Total_Benefit_Price();
+    void print_Total_Benefit_Price( Integer totalAmount);
 
     void print_After_Discount_Payment_Amount();
 
