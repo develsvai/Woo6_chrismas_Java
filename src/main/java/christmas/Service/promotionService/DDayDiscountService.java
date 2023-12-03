@@ -12,12 +12,8 @@ public class DDayDiscountService extends PromotionService{
 
     @Override
     public SimpleEntry<EventPolicyEnum, Integer> discountService(OrderMenusModel order, VisitDateModel date, PromotionDatePolicy policy) {
-        LocalDate christmas = LocalDate.of(2023, 12, 25);
 
-        long daysUntilChristmas = ChronoUnit.DAYS.between(date.takeVisitDate(), christmas);
-        int discountPerDay = 100;
-        int discountAmount = EventPolicyEnum.D_DAY_DISCOUNT.getDiscountAmount() + (int) (daysUntilChristmas * discountPerDay);
-        int actualDiscount = Math.min(order.getTotalOrderAmount(), discountAmount);
+        int actualDiscount = 1000 + (date.takeVisitDate().getDayOfMonth()-1)*100;
 
         return new SimpleEntry<>(EventPolicyEnum.D_DAY_DISCOUNT, actualDiscount);
     }
