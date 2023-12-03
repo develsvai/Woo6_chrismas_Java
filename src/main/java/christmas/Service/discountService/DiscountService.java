@@ -9,7 +9,9 @@ import christmas.vo.Benefits;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.EnumMap;
-import java.util.Map;
+import org.junit.jupiter.api.Order;
+import org.mockito.internal.matchers.Or;
+
 
 public class DiscountService {
     private final OrderMenusModel order;
@@ -26,7 +28,7 @@ public class DiscountService {
         this.totalBenefitPrice = 0;
     }
 
-    public void cal_christmas_D_Day_Discount_Amount() {
+    public void cal_christmas_D_Day_Discount_Amount(OrderMenusModel order, VisitDateModel Date) {
         LocalDate christmas = LocalDate.of(2023, 12, 25);
         long daysUntilChristmas = ChronoUnit.DAYS.between(date.takeVisitDate(), christmas);
         int startingAmount = 1000;

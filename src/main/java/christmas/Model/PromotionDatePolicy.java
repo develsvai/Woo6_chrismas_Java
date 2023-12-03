@@ -11,9 +11,9 @@ public class PromotionDatePolicy {
     }
 
     public boolean isWeekDay() {
-        // 요일이 월요일부터 금요일까지인지 확인
+        // 요일이 일요일부터 목요일까지인지 확인
         DayOfWeek dayOfWeek = date.getDayOfWeek();
-        return dayOfWeek != DayOfWeek.SATURDAY && dayOfWeek != DayOfWeek.SUNDAY;
+        return dayOfWeek != DayOfWeek.FRIDAY && dayOfWeek != DayOfWeek.SATURDAY;
     }
 
     public boolean isWeekend() {
@@ -36,7 +36,7 @@ public class PromotionDatePolicy {
     }
 
     public boolean isSpecialDate() {
-        // 12월 25일 또는 일요일이면서 25일이 아닌 일요일인 경우
+        // 12월 25일 또는 일요일 이면서 25일이 아닌 일요일 인 경우
         return date.getMonth() == java.time.Month.DECEMBER &&
                 (date.getDayOfMonth() == 25 || (isSunday() && date.getDayOfMonth() != 25));
     }

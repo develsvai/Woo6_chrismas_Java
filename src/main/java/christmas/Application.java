@@ -1,6 +1,5 @@
 package christmas;
 
-import christmas.Service.promotionService.PromotionService;
 import christmas.View.inputView.ConsoleInputView;
 import christmas.View.inputView.InputView;
 import christmas.View.outputView.ConsoleOutputView;
@@ -12,10 +11,7 @@ public class Application {
     public static void main(String[] args) {
         InputView inputView = new ConsoleInputView();
         OutputView outputView = new ConsoleOutputView();
-        PromotionService promotionService = new PromotionService();
-
-        Controller controller = new Controller(inputView,outputView,promotionService);
-
+        Controller controller = new Controller(inputView,outputView);
         controller.chrisMas_Promotion_Service();
     }
 

@@ -10,7 +10,12 @@ public class ModelToViewDto {
         this.orderMenusModel = orderMenusModel;
     }
 
-    public EnumMap<Menu, Integer> transferModelToView(){
+    public EnumMap<Menu, Integer> orderMenuTransferModelToView(){
         return orderMenusModel.getOrderMenu();
     }
+
+    public int TransferModelToViewTotalAmount(){
+        return orderMenusModel.getTotalOrderAmount();
+    }
+
 }

@@ -21,11 +21,11 @@ public enum Menu {
     private final int price;
     private final Category category;
 
-    public enum Category {
-        APPETIZER, MAIN, DESSERT, DRINK, INVALID
-    }
+        public enum Category {
+            APPETIZER, MAIN, DESSERT, DRINK, INVALID
+        }
 
-    Menu(String name, int price, Category category) {
+        Menu(String name, int price, Category category) {
         this.name = name;
         this.price = price;
         this.category = category;
