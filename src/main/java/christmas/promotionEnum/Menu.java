@@ -1,6 +1,8 @@
 package christmas.promotionEnum;
 
 import java.util.Arrays;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public enum Menu {
     MUSHROOM_SOUP("양송이수프", 6_000, Category.APPETIZER),
@@ -21,11 +23,15 @@ public enum Menu {
     private final int price;
     private final Category category;
 
-        public enum Category {
-            APPETIZER, MAIN, DESSERT, DRINK, INVALID
-        }
+    private static final Set<String> menuSet = Arrays.stream(values())
+            .map(Menu::getName)
+            .collect(Collectors.toSet());
 
-        Menu(String name, int price, Category category) {
+    public enum Category {
+        APPETIZER, MAIN, DESSERT, DRINK, INVALID
+    }
+
+    Menu(String name, int price, Category category) {
         this.name = name;
         this.price = price;
         this.category = category;
@@ -48,6 +54,11 @@ public enum Menu {
 
     public Category getCategory() {
         return category;
+    }
+
+    public boolean isInMenu() {
+        // 메뉴 판에 있는지 여부를 반환
+        return menuSet.contains(name);
     }
 }
 

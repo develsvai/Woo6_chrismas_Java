@@ -1,6 +1,5 @@
 package christmas.View.inputView.Parser;
 
-import christmas.View.outputView.ViewMessage;
 
 public class VisitDateParser {
 

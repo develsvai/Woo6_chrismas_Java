@@ -72,13 +72,36 @@ public class Controller {
     }
 
     private void createModel(){
-        InputVisitDateDto inputVisitDateDto = Input_Expected_Visit_Date();
-        InputOrderMenusDto inputOrderMenusDto = Input_Order_Menu();
-
         Constructor constructor = new Constructor();
-        visitDate = constructor.createVisitDateModel(inputVisitDateDto.takeVisitDate());
-        orderMenus = constructor.createOrderMenusModel(inputOrderMenusDto.takeInputOrderMenus());
-        policy = constructor.createpromotionDatePolicy(visitDate);
+        createVisitDateModel(constructor);
+        createOrderMenusModel(constructor);
+    }
+    private void createOrderMenusModel(Constructor constructor) {
+
+        while (true) {
+            try {
+                InputOrderMenusDto inputOrderMenusDto = Input_Order_Menu();
+                orderMenus = constructor.createOrderMenusModel(inputOrderMenusDto.takeInputOrderMenus());
+                policy = constructor.createpromotionDatePolicy(visitDate);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
+    }
+    private void createVisitDateModel(Constructor constructor) {
+
+        while (true) {
+            try {
+                InputVisitDateDto inputVisitDateDto = Input_Expected_Visit_Date();
+                visitDate = constructor.createVisitDateModel(inputVisitDateDto.takeVisitDate());
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
     }
 
     private void giveAwayService(){
