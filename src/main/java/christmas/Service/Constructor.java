@@ -1,4 +1,4 @@
-package christmas.Service.modelConstructor;
+package christmas.Service;
 
 import christmas.Model.OrderMenusModel;
 import christmas.Model.PromotionDatePolicy;
