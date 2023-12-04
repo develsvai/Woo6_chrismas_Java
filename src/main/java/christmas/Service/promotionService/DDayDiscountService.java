@@ -14,7 +14,9 @@ public class DDayDiscountService extends PromotionService{
     public SimpleEntry<EventPolicyEnum, Integer> discountService(OrderMenusModel order, VisitDateModel date, PromotionDatePolicy policy) {
 
         int actualDiscount = 1000 + (date.takeVisitDate().getDayOfMonth()-1)*100;
-
-        return new SimpleEntry<>(EventPolicyEnum.D_DAY_DISCOUNT, actualDiscount);
+        if(policy.isDDayDateRange()) {
+            return new SimpleEntry<>(EventPolicyEnum.D_DAY_DISCOUNT, actualDiscount);
+        }
+        return new SimpleEntry<>(EventPolicyEnum.D_DAY_DISCOUNT, 0);
     }
 }
