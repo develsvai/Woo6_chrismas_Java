@@ -1,17 +1,27 @@
 package christmas.Model;
 
-import christmas.dto.InputVisitDateDto;
 import java.time.LocalDate;
 
 public class VisitDateModel {
     private final Integer visitDate;
+    private static final String ERROR_MESSAGE_OUT_OF_RANGE = "[ERROR] 1에서 31 사이의 숫자여야 합니다";
 
-    public VisitDateModel(Integer date) {
-        // 년도는 2023으로 고정 
+    public VisitDateModel(int date) {
+        checkInRange(date);
         this.visitDate = date;
     }
 
+
+    private void checkInRange(Integer value) {
+        if (value < 1 || value > 31) {
+            throw new IllegalArgumentException(ERROR_MESSAGE_OUT_OF_RANGE);
+        }
+    }
+
     public LocalDate takeVisitDate() {
+
         return LocalDate.of(2023, 12, visitDate);
     }
+
+
 }
