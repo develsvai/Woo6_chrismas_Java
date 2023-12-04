@@ -12,7 +12,7 @@ public class Application {
         InputView inputView = new ConsoleInputView();
         OutputView outputView = new ConsoleOutputView();
         Controller controller = new Controller(inputView,outputView);
-        controller.chrisMas_Promotion_Service();
+        controller.chrisMasPromotionPlanner();
     }
 
 }

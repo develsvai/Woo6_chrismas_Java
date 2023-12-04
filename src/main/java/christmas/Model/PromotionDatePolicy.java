@@ -17,9 +17,9 @@ public class PromotionDatePolicy {
     }
 
     public boolean isWeekend() {
-        // 요일이 토요일 또는 일요일인지 확인
+        // 요일이 금요일 또는 토요일인지 확인
         DayOfWeek dayOfWeek = date.getDayOfWeek();
-        return dayOfWeek == DayOfWeek.SATURDAY || dayOfWeek == DayOfWeek.SUNDAY;
+        return dayOfWeek == DayOfWeek.FRIDAY || dayOfWeek == DayOfWeek.SATURDAY;
     }
 
     public boolean isEventDateRange() {

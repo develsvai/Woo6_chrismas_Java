@@ -11,7 +11,7 @@ public class WeekDayDiscountService extends PromotionService{
     @Override
     public SimpleEntry<EventPolicyEnum, Integer> discountService(OrderMenusModel order, VisitDateModel Date, PromotionDatePolicy policy){
         int dessertDiscount = order.getQuantityByCategory(Menu.Category.DESSERT) * EventPolicyEnum.WEEKDAY_DISCOUNT.getDiscountAmount();
-        if (policy.isWeekDay()) {
+        if (policy.isWeekDay() && policy.isEventDateRange()) {
             return new SimpleEntry<>(EventPolicyEnum.WEEKDAY_DISCOUNT, dessertDiscount);
         }
         return new SimpleEntry<>(EventPolicyEnum.WEEKDAY_DISCOUNT, 0);

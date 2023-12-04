@@ -11,7 +11,7 @@ import java.util.AbstractMap.SimpleEntry;
 public class WeekendDiscountService  extends PromotionService {
     public SimpleEntry<EventPolicyEnum, Integer> discountService(OrderMenusModel order, VisitDateModel Date, PromotionDatePolicy policy){
         int mainDiscount = order.getQuantityByCategory(Menu.Category.MAIN) * 2023;
-        if (policy.isWeekend()) {
+        if (policy.isWeekend()  &&  policy.isEventDateRange()) {
             return new SimpleEntry<>(EventPolicyEnum.WEEKEND_DISCOUNT, mainDiscount); // Modify Menu.NONE as needed
         }
         return new SimpleEntry<>(EventPolicyEnum.WEEKEND_DISCOUNT,0); // Modify Menu.NONE as needed

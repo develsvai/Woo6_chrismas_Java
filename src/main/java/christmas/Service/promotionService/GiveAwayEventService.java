@@ -11,8 +11,8 @@ public class GiveAwayEventService extends PromotionService {
 
     @Override
     public SimpleEntry<EventPolicyEnum, Integer> discountService(OrderMenusModel order, VisitDateModel Date, PromotionDatePolicy policy){
-        int giveawayDiscount = 1;
-        if (order.getTotalOrderAmount() >= 120000) {
+
+        if (order.getTotalOrderAmount() >= 120000 && policy.isEventDateRange()) {
             return new SimpleEntry<>(EventPolicyEnum.GIVEAWAY_DISCOUNT, Menu.CHAMPAGNE.getPrice());
         }
         return new SimpleEntry<>(EventPolicyEnum.GIVEAWAY_DISCOUNT, 0);
